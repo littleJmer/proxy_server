@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  reverse-proxy:
+    build: ./ReverseProxy
+    ports:
+      - 8080:80
+    depends_on:
+      - api
+      - web
+  api:
+    build: ./Api
+    volumes:
+      - ./Api:/usr/src/app
+  web:
+    build: ./Web
+    volumes:
+      - ./Web:/var/www/html
+    depends_on:
+      - api
