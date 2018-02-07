@@ -1,7 +1,11 @@
+# $ docker swarm init
+# $ docker stack deploy -c docker-compose.yml g-suite
 # version 3 is required for docker swarm
+# docker compose
 version: '3'
 
 services:
+  
   reverse-proxy:
     build: ./ReverseProxy
     ports:
@@ -11,12 +15,14 @@ services:
       - web
     deploy:
       replicas: 1
+  
   api:
     build: ./Api
     volumes:
       - ./Api:/usr/src/app
     deploy:
       replicas: 1
+  
   web:
     build: ./Web
     volumes:
