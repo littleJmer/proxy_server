@@ -1,3 +1,4 @@
+# version 3 is required for docker swarm
 version: '3'
 
 services:
@@ -8,13 +9,19 @@ services:
     depends_on:
       - api
       - web
+    deploy:
+      replicas: 1
   api:
     build: ./Api
     volumes:
       - ./Api:/usr/src/app
+    deploy:
+      replicas: 1
   web:
     build: ./Web
     volumes:
       - ./Web:/var/www/html
     depends_on:
       - api
+    deploy:
+      replicas: 2
