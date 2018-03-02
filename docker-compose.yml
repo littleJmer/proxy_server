@@ -3,7 +3,7 @@
 # version 3 is required for docker swarm
 # docker compose
 version: '3'
-
+    asdfasd
 services:
   
   reverse-proxy:
